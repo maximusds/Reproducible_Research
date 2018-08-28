@@ -1,0 +1,134 @@
+# Reproducible Research
+
+
+
+## 1._Loading and preprocessing the data
+
+
+```r
+
+
+url<-"https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
+download.file(url,paste(getwd(),"activity.zip",sep="/"))
+unzip("activity.zip")
+Data <- read.csv("activity.csv,header=T)
+Data$date <- strptime(Data$date,"%Y-%m-%d")
+Data$interval <- as.factor(Data$interval)
+```
+
+-----
+
+## What is mean total number of steps taken per day?
+########steps_per_day <- aggregate(steps ~ date, rdata, sum)
+
+```r
+stepsByDay <- tapply(Data$steps, Data$date, sum, na.rm=TRUE)
+```
+
+## 2._ Make a histogram of the total number of steps taken each day
+
+```r
+png(paste(getwd(),"plot1.png",sep="/"),width=480, height=480)
+qplot(stepsByDay, xlab='Total steps per day', ylab='Frequency using binwith 500', binwidth=500)
+dev.off()             
+             
+```
+
+![plot of plot1]
+
+## 3. Mean and median number of steps taken each day
+```r
+stepsByDayMean <- mean(stepsByDay)
+stepsByDayMedian <- median(stepsByDay)
+```
+* Mean: 9354.2295
+* Median:  10395
+
+-----
+
+#### Average daily activity pattern
+
+```r
+avg<- tapply(Data$steps, Data$interval, mean, na.rm=TRUE)
+```
+
+## 4. Time series plot of the average number of steps taken
+
+```r
+png(paste(getwd(),"plot2.png",sep="/"),width=480, height=480)
+plot(names(avg), avg, xlab="5-min interval", type="l", ylab="Average no. of steps")
+dev.off()    
+```
+
+![plot of plot2]
+
+## 5._The 5-minute interval that, on average, contains the maximum number of steps
+
+```r
+maxavg<- max(avg)
+```
+
+* Most Steps at: 8:35
+
+----
+
+## 6._Code to describe and show a strategy for imputing missing data
+
+
+```r
+totalna<- sum(is.na(Data$steps))
+```
+
+* Number of missing values: 2304
+
+#####  New Dataset
+
+
+```r
+DataImputed <- Data
+DataImputed$steps <- with(DataImputed,impute(DataImputed$steps, fun=mean))
+```
+
+
+## 7. Histogram of the total number of steps taken each day after missing values are imputed
+
+```r
+stepsByDayImputed <- tapply(DataImputed$steps, DataImputed$date, sum)
+png(paste(getwd(),"plot3.png",sep="/"),width=480, height=480)
+qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
+dev.off()             
+```
+
+![plot of plot3]
+
+##### ... and Calculate and report the mean and median total number of steps taken per day. 
+
+```r
+stepsByDayMeanImputed <- mean(stepsByDayImputed)
+stepsByDayMedianImputed <- median(stepsByDayImputed)
+```
+* Mean (Imputed): 1.0766 &times; 10<sup>4</sup>
+* Median (Imputed):  1.0766 &times; 10<sup>4</sup>
+
+
+----
+
+##8._Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
+
+```r
+DataImputed$dateType <-  ifelse(as.POSIXlt(DataImputed$date)$wday %in% c(0,5), 'weekend', 'weekday')
+
+averagedDataImputed <- aggregate(steps ~ interval + dateType, data=DataImputed, mean)
+
+png(paste(getwd(),"plot4.png",sep="/"),width=480, height=480)  
+
+ggplot(averagedDataImputed, aes(interval, steps)) + 
+    geom_line() + 
+    facet_grid(dateType ~ .) +
+    xlab("5-minute interval") + 
+    ylab("avarage number of steps")
+    
+dev.off()
+```
+
+![plot of plot4]
