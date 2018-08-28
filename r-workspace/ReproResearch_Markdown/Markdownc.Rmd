@@ -39,7 +39,7 @@ qplot(stepsByDay, xlab='Total steps per day', ylab='Frequency using binwith 500'
              
 ```
 
-![plot of plot1]
+[plot of plot1](https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot1.png)
 
 ## 3. Mean and median number of steps taken each day
 ```r
@@ -65,7 +65,7 @@ plot(names(avg), avg, xlab="5-min interval", type="l", ylab="Average no. of step
    
 ```
 
-![plot of plot2]
+[plot of plot2](https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot2.png)
 
 ## 5._The 5-minute interval that, on average, contains the maximum number of steps
 
@@ -105,7 +105,7 @@ qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency u
             
 ```
 
-![plot of plot3]
+[plot of plot3](https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot3.png)
 
 ##### ... and Calculate and report the mean and median total number of steps taken per day. 
 
@@ -138,5 +138,5 @@ g
     
 ##dev.off()
 ```
-
+<https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot4.png>
 

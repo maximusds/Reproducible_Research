@@ -151,7 +151,7 @@ Data$interval &lt;- as.factor(Data$interval)</code></pre>
 qplot(stepsByDay, xlab='Total steps per day', ylab='Frequency using binwith 500', binwidth=500)
            
              </code></pre>
-<p>[plot of plot1]</p>
+<p><a href="https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot1.png">plot of plot1</a></p>
 </div>
 <div id="mean-and-median-number-of-steps-taken-each-day" class="section level2">
 <h2>3. Mean and median number of steps taken each day</h2>
@@ -172,7 +172,7 @@ stepsByDayMedian &lt;- median(stepsByDay)</code></pre>
 <pre class="r"><code>
 plot(names(avg), avg, xlab=&quot;5-min interval&quot;, type=&quot;l&quot;, ylab=&quot;Average no. of steps&quot;)
    </code></pre>
-<p>[plot of plot2]</p>
+<p><a href="https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot2.png">plot of plot2</a></p>
 </div>
 <div id="the-5-minute-interval-that-on-average-contains-the-maximum-number-of-steps" class="section level2">
 <h2>5._The 5-minute interval that, on average, contains the maximum number of steps</h2>
@@ -201,7 +201,7 @@ DataImputed$steps &lt;- with(DataImputed,impute(DataImputed$steps, fun=mean))</c
 qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
 
             </code></pre>
-<p>[plot of plot3]</p>
+<p><a href="https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot3.png">plot of plot3</a></p>
 <div id="and-calculate-and-report-the-mean-and-median-total-number-of-steps-taken-per-day." class="section level5">
 <h5>… and Calculate and report the mean and median total number of steps taken per day.</h5>
 <pre class="r"><code>stepsByDayMeanImputed &lt;- mean(stepsByDayImputed)
@@ -230,6 +230,7 @@ g
 
     
 ##dev.off()</code></pre>
+<p><a href="https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot4.png" class="uri">https://github.com/maximusds/Reproducible_Research/blob/master/r-workspace/ReproResearch_Markdown/plot4.png</a></p>
 </div>
 </div>
 
